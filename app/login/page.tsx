@@ -1,12 +1,13 @@
-import Image from 'next/image'
-import { Button } from '../_components/ui/button'
-import { LogInIcon } from 'lucide-react'
 import { SignInButton } from '@clerk/nextjs'
 import { auth } from '@clerk/nextjs/server'
+import Image from 'next/image'
 import { redirect } from 'next/navigation'
+import { Button } from '../_components/ui/button'
+import { LogInIcon } from 'lucide-react'
 
 const LoginPage = async () => {
   const { userId } = await auth()
+  // verifica se o usuario está logado
   if (userId) {
     redirect('/')
   }
