@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-br">
       <body className={` dark antialiased`}>
         {/* necessario para a lib clerk funciona na pagina toda */}
         <ClerkProvider
