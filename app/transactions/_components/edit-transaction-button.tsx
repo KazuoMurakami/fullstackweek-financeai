@@ -26,11 +26,11 @@ const EditTransactionButton = ({ transaction }: EditTransactionButtonProps) => {
       <UpsertTransactionDialog
         isOpen={dialogIsOpen}
         setIsOpen={setDialogIsOpen}
+        transactionId={transaction.id}
         defaultValues={{
           ...transaction,
-          amount: Number(transaction.amount),
+          amount: transaction.amount,
         }}
-        transactionId={transaction.id}
       />
     </>
   )

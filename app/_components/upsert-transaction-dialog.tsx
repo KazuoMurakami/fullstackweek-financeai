@@ -93,12 +93,12 @@ const UpsertTransactionDialog = ({
     resolver: zodResolver(formSchema), // Usa Zod para resolver a validação
     defaultValues: defaultValues ?? {
       // Define valores padrão caso não sejam passados
+      name: '',
       amount: 50,
       category: TransactionCategory.OTHER,
       date: new Date(),
-      name: '',
       paymentMethod: TransactionPaymentMethod.CASH,
-      type: TransactionType.EXPENSE,
+      type: TransactionType.DEPOSIT,
     },
   })
 
