@@ -6,6 +6,7 @@ import TimeSelect from './_components/time-select'
 import { isMatch } from 'date-fns'
 import { getDashBoard } from '../_data/get-dashboard'
 import PieChartDonut from './_components/transactions-pie-chart'
+import ExpensePerCategory from './_components/expenses-per-category'
 
 const Home = async ({
   searchParams: { month },
@@ -45,6 +46,9 @@ const Home = async ({
             <SummaryCards {...dashboard} />
             <div className="grid grid-cols-3 grid-row-1 gap-6">
               <PieChartDonut {...dashboard} />
+              <ExpensePerCategory
+                expensesPerCategory={dashboard.TotalExpensePerCategory}
+              />
             </div>
           </div>
         </div>
