@@ -6,6 +6,9 @@ import {
 
 // arquivo para pegar os valores originais do banco de dados e mudarmos para pt-BR uma boa pratica para projetos que utilizamos ingles
 
+/**
+ * Mapeia os métodos de pagamento de transações para seus respectivos ícones SVG.
+ */
 export const TRANSACTION_PAYMENT_METHOD_ICONS = {
   [TransactionPaymentMethod.CREDIT_CARD]: 'credit-card.svg',
   [TransactionPaymentMethod.DEBIT_CARD]: 'debit-card.svg',
