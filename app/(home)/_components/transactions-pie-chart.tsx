@@ -1,12 +1,6 @@
 'use client'
 
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from '@/app/_components/ui/card'
+import { Card, CardContent } from '@/app/_components/ui/card'
 import {
   ChartConfig,
   ChartContainer,
@@ -70,11 +64,7 @@ const PieChartDonut = ({
   ]
 
   return (
-    <Card className="flex flex-col p-6">
-      <CardHeader className="items-center pb-0">
-        <CardTitle>Pie Chart - Donut</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
-      </CardHeader>
+    <Card className="flex flex-col p-6 overflow-hidden">
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
