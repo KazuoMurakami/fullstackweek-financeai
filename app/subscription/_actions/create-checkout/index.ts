@@ -2,23 +2,25 @@
 import Stripe from 'stripe'
 import { auth } from '@clerk/nextjs/server'
 export const createStripeCheckout = async () => {
+  // função para criar o checkout
   const { userId } = await auth()
 
   if (!userId) {
-    throw new Error('Usuário não autenticado')
+    throw new Error('Usuário não autenticado') // verifica se o usuário está autenticado
   }
 
   if (!process.env.STRIPE_SECRET_KEY) {
-    throw new Error('Chave secreta do Stripe não definida')
+    throw new Error('Chave secreta do Stripe não definida') // verifica se a chave secreta do stripe está definida
   }
 
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: '2024-12-18.acacia',
+    apiVersion: '2024-12-18.acacia', // versão da api
   })
 
   const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'], // metodo de pagamento disponivel para o checkout
+    payment_method_types: ['card', 'pix'], // metodo de pagamento disponivel para o checkout
     subscription_data: {
+      // dados da assinatura
       metadata: {
         clerk_user_id: userId, // id do usuário
       },
