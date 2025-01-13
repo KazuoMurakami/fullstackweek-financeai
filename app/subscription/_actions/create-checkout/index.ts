@@ -18,7 +18,7 @@ export const createStripeCheckout = async () => {
   })
 
   const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card', 'pix'], // metodo de pagamento disponivel para o checkout
+    payment_method_types: ['card'], // metodo de pagamento disponivel para o checkout
     subscription_data: {
       // dados da assinatura
       metadata: {
