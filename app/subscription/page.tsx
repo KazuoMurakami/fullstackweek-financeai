@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader } from '../_components/ui/card'
 import { Badge } from '../_components/ui/badge'
 import { CheckIcon, XIcon } from 'lucide-react'
 import AdquirePlan from './_components/AdquirePlan-button'
+import { db } from '../_lib/prisma'
+import { endOfMonth, startOfMonth } from 'date-fns'
 
 const SubscriptionPage = async () => {
   const { userId } = await auth()
@@ -14,6 +16,15 @@ const SubscriptionPage = async () => {
 
   const user = await clerkClient().users.getUser(userId)
   const hasPremiumPlan = user.publicMetadata.subscriptionPlan === 'premium'
+  const currentMonthTransactions = db.transaction.count({
+    where: {
+      userId,
+      createdAt: {
+        gte: startOfMonth(new Date()),
+        lt: endOfMonth(new Date()),
+      },
+    },
+  })
 
   return (
     <>
@@ -39,7 +50,9 @@ const SubscriptionPage = async () => {
             <CardContent className="space-y-6 py-8">
               <div className=" flex items-center gap-3 ">
                 <CheckIcon className="text-primary" />
-                <p>Apenas 10 transações por mês (7/10)</p>
+                <p>
+                  Apenas 10 transações por mês ({currentMonthTransactions}/10)
+                </p>
               </div>
               <div className=" flex items-center gap-3 ">
                 <XIcon className="text-red-700" />

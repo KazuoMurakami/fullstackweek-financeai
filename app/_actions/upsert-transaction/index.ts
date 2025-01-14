@@ -21,11 +21,12 @@ interface UpsertTransactionParams {
 }
 
 export const upsertTransaction = async (params: UpsertTransactionParams) => {
-  upsertTransactionSchema.parse(params)
   const { userId } = await auth()
+
   if (!userId) {
     throw new Error('Unauthorized')
   }
+  upsertTransactionSchema.parse(params)
   if (params.id) {
     // Se `id` estiver definido, use `upsert` normalmente
     await db.transaction.upsert({
